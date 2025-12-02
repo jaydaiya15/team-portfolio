@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panch Tatvv | AI/ML Innovation Team</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ai-blue': '#3b82f6',
+                        'ml-purple': '#8b5cf6',
+                        'data-cyan': '#06b6d4',
+                        'team-dark': '#0f172a',
+                        'neural-green': '#10b981',
+                    },
+                    fontFamily: {
+                        'mono': ['Inconsolata', 'monospace'],
+                        'sans': ['Montserrat', 'sans-serif']
+                    },
+                    animation: {
+                        'terminal-cursor': 'blink 1s infinite',
+                        'data-stream': 'data-stream 6s infinite',
+                        'neural-pulse': 'neural-pulse 2s infinite',
+                        'typewriter': 'typewriter 4s steps(29) forwards'
+                    },
+                    keyframes: {
+                        blink: {
+                            '0%, 100%': { opacity: 1 },
+                            '50%': { opacity: 0 },
+                        },
+                        'data-stream': {
+                            '0%': { height: '0', opacity: 1 },
+                            '5%': { height: '100%', opacity: 1 },
+                            '10%': { opacity: 0, height: '100%' },
+                            '11%': { opacity: 0, height: '0' },
+                            '100%': { opacity: 0, height: '0' }
+                        },
+                        'neural-pulse': {
+                            '0%, 100%': { opacity: 0.5, transform: 'scale(1)' },
+                            '50%': { opacity: 1, transform: 'scale(1.05)' }
+                        },
+                        typewriter: {
+                            '0%': { width: '0' },
+                            '100%': { width: '29ch' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .neural-bg::before {
+            transform-origin: center;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        #mobile-menu {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        .ai-animation.w-64.h-64 {
+            max-width: 100%;
+            width: 256px;
+            height: 256px;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+        }
+        
+        body {
+            padding-top: 80px;
+            overflow-x: hidden;
+            width: 100%;
+        }
+        
+        .neural-bg {
+            position: relative;
+            background-color: #0f172a;
+        }
+        
+        .neural-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(transparent 70%, rgba(59, 130, 246, 0.05) 70%),
+                linear-gradient(90deg, transparent 70%, rgba(139, 92, 246, 0.05) 70%);
+            background-size: 40px 40px;
+            transform: rotate(45deg);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        
+        .ai-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        
+        .ai-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+        
+        .ai-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .ai-card:hover::after {
+            transform: translateY(0);
+        }
+        
+        .ai-button {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ai-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+        
+        .code-block {
+            background-color: #1e293b;
+            border-left: 3px solid #3b82f6;
+        }
+        
+        .data-stream-line {
+            position: absolute;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(transparent, rgba(139, 92, 246, 0.5), transparent);
+            animation: data-stream 6s infinite;
+            opacity: 0;
+        }
+        
+        .data-stream-line:nth-child(1) { top: 10%; left: 0; animation-delay: 0s; }
+        .data-stream-line:nth-child(2) { top: 30%; right: 0; animation-delay: 1.5s; }
+        .data-stream-line:nth-child(3) { top: 50%; left: 0; animation-delay: 3s; }
+        .data-stream-line:nth-child(4) { top: 70%; right: 0; animation-delay: 4.5s; }
+        
+        .progress-bar {
+            height: 0.5rem;
+            background-color: #1e293b;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+        
+        .skill-badge {
+            background-color: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            left: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #3b82f6;
+            border: 3px solid rgba(139, 92, 246, 0.3);
+        }
+        
+        .timeline-vertical:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 7px;
+            width: 2px;
+            background-color: rgba(139, 92, 246, 0.3);
+        }
+        
+        .ai-animation {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4, #3b82f6);
+            background-size: 400% 400%;
+            animation: aiEffect 8s ease infinite;
+        }
+        
+        @keyframes aiEffect {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+        
+        .skill-bar-fill {
+            animation: fillBar 1.5s ease-out forwards;
+        }
+        
+        @keyframes fillBar {
+            from { width: 0; }
+        }
+        
+        .team-member-card {
+            transition: transform 0.3s ease;
+        }
+        
+        .team-member-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .neural-node {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #3b82f6;
+            position: absolute;
+            animation: neural-pulse 2s infinite;
+        }
+        
+        @media (max-width: 768px) {
+            .terminal-responsive {
+                flex-direction: column;
+            }
+            
+            .terminal-section {
+                width: 100%;
+            }
+        }
+        
+        html, body {
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="neural-bg text-gray-200 font-sans bg-team-dark">
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 bg-team-dark/90 py-4 px-6 md:px-12 flex justify-between items-center backdrop-blur">
+        <div>
+            <a href="#" class="text-2xl font-bold font-mono">
+                <span class="text-ai-blue">panch</span>
+                <span class="text-ml-purple">_</span>
+                <span class="text-data-cyan">tatvv</span>
+            </a>
+        </div>
+        <div class="hidden md:flex space-x-8">
+            <a href="#about" class="hover:text-ai-blue transition">About</a>
+            <a href="#team" class="hover:text-ai-blue transition">Team</a>
+            <a href="#projects" class="hover:text-ai-blue transition">Projects</a>
+            <a href="#skills" class="hover:text-ai-blue transition">Expertise</a>
+            <a href="#contact" class="hover:text-ai-blue transition">Contact</a>
+        </div>
+        <button id="menu-toggle" class="md:hidden text-ai-blue text-2xl" aria-label="Open menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden fixed inset-0 bg-team-dark z-40 hidden transition-all" aria-hidden="true">
+        <div class="flex justify-end p-6">
+            <button id="close-menu" class="text-ai-blue text-2xl" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="flex flex-col items-center space-y-8 mt-20">
+            <a href="#about" class="text-xl hover:text-ai-blue transition py-2">About</a>
+            <a href="#team" class="text-xl hover:text-ai-blue transition py-2">Team</a>
+            <a href="#projects" class="text-xl hover:text-ai-blue transition py-2">Projects</a>
+            <a href="#skills" class="text-xl hover:text-ai-blue transition py-2">Expertise</a>
+            <a href="#contact" class="text-xl hover:text-ai-blue transition py-2">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex flex-col justify-center">
+        <!-- Neural network nodes -->
+        <div class="absolute inset-0 z-0">
+            <div class="neural-node" style="top: 20%; left: 15%;"></div>
+            <div class="neural-node" style="top: 40%; right: 20%; animation-delay: 0.5s;"></div>
+            <div class="neural-node" style="top: 60%; left: 25%; animation-delay: 1s;"></div>
+            <div class="neural-node" style="top: 80%; right: 15%; animation-delay: 1.5s;"></div>
+            <div class="neural-node" style="top: 30%; right: 30%; animation-delay: 0.8s;"></div>
+        </div>
+        
+        <!-- Data stream animations -->
+        <div class="data-stream-line"></div>
+        <div class="data-stream-line"></div>
+        <div class="data-stream-line"></div>
+        <div class="data-stream-line"></div>
+        
+        <div class="container mx-auto px-4 py-16 relative z-10">
+            <div class="max-w-7xl mx-auto">
+                <!-- Animated terminal typing effect -->
+                <div class="ai-card p-8 mb-12 max-w-4xl">
+                    <div class="terminal-header flex items-center mb-4">
+                        <div class="flex space-x-2 mr-4">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <div class="text-xs font-mono text-gray-400">team@panch-tatvv:~</div>
+                    </div>
+                    <div class="terminal-content font-mono">
+                        <p class="text-ai-blue">$ team.init()</p>
+                        <p class="text-ml-purple mb-6">Initializing Panch Tatvv AI/ML Team...</p>
+
+                        <p class="text-ai-blue">$ cat team_manifest.txt</p>
+                        <p class="mb-2"><b>Team Name</b>: Panch Tatvv (Five Elements)</p>
+                        <p class="mb-2"><b>Mission</b>: Leveraging AI/ML to solve real-world challenges</p>
+                        <p class="mb-2"><b>Core Philosophy</b>: Innovation through collaboration</p>
+
+                        <p class="mb-2"><b>Team Composition</b>:</p>
+                        <ul class="list-disc pl-6 text-gray-300 mb-6">
+                            <li>🤖 5 Specialized Members with Complementary Skills</li>
+                            <li>🧠 AI/ML Research & Development Focus</li>
+                            <li>🔬 Practical, Impact-Driven Project Development</li>
+                            <li>🌐 Full-Stack Implementation Capabilities</li>
+                        </ul>
+
+                        <p class="mb-2"><b>Current Projects</b>:</p>
+                        <ul class="list-disc pl-6 text-gray-300 mb-6">
+                            <li>📊 Demand-Based Inventory Management System</li>
+                            <li>🖱️ AI Virtual Mouse with Hand Gestures</li>
+                            <li>🌾 Smart Crop AI: Personalized Crop Recommendation</li>
+                        </ul>
+
+                        <p class="mb-6"><b>Status</b>: <span class="text-neural-green">[ACTIVE & INNOVATING]</span></p>
+                        <p class="text-gray-300">
+                            A dynamic team of five enthusiasts dedicated to transforming complex problems 
+                            into efficient, technology-driven solutions through artificial intelligence.
+                        </p>
+
+                        <p class="text-ai-blue">$ ./deploy_solutions.sh</p>
+                        <p class="text-ml-purple animate-pulse">Deploying AI-powered innovations...</p>
+                    </div>
+                </div>
+                
+                <!-- Hero content -->
+                <div class="flex flex-wrap items-center justify-between gap-12 mt-12">
+                    <div class="max-w-lg">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                            AI/ML Innovation
+                            <span class="text-ai-blue">Team</span>
+                        </h1>
+                        <p class="text-xl text-gray-300 mb-8">
+                            Five elements combining diverse expertise in AI, machine learning, data science, 
+                            and software engineering to develop innovative and practical solutions.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#projects" class="ai-button px-8 py-3 font-medium">
+                                View Our Projects
+                            </a>
+                            <a href="#team" class="ai-button bg-ml-purple px-8 py-3 font-medium">
+                                Meet The Team
+                            </a>
+                            <a href="#contact" class="ai-button bg-data-cyan px-8 py-3 font-medium">
+                                Collaborate With Us
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Team visualization graphic -->
+                    <div class="relative">
+                        <div class="ai-animation w-64 h-64 rounded-xl flex items-center justify-center">
+                            <div class="bg-team-dark rounded-xl p-2 w-full h-full">
+                                <div class="bg-gradient-to-br from-ai-blue/20 to-ml-purple/20 rounded-lg w-full h-full flex items-center justify-center">
+                                    <div class="text-center p-4">
+                                        <div class="text-5xl font-bold text-ai-blue">5</div>
+                                        <div class="text-ml-purple font-mono mt-2">AI/ML SPECIALISTS</div>
+                                        <div class="text-data-cyan text-sm mt-1">Panch Tatvv Team</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 md:px-12 bg-team-dark/90 backdrop-blur-sm">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex items-center justify-center gap-4 mb-16">
+                <div class="w-12 h-1 bg-ai-blue"></div>
+                <h2 class="text-3xl md:text-4xl font-bold text-center">
+                    About <span class="text-ai-blue">Panch Tatvv</span>
+                </h2>
+                <div class="w-12 h-1 bg-ai-blue"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="ai-card p-8">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-brain text-ml-purple mr-3"></i>
+                        Our Philosophy
+                    </h3>
+                    <p class="text-lg text-gray-300 mb-6">
+                        Panch Tatvv represents the five essential elements of successful AI implementation: 
+                        <span class="text-ai-blue">Data</span>, <span class="text-ml-purple">Algorithms</span>, 
+                        <span class="text-data-cyan">Infrastructure</span>, <span class="text-neural-green">Ethics</span>, 
+                        and <span class="text-ai-blue">Impact</span>.
+                    </p>
+                    <p class="text-lg text-gray-300">
+                        We believe that true innovation happens at the intersection of diverse expertise. 
+                        Our team combines skills in machine learning, software engineering, cybersecurity, 
+                        and data science to create holistic solutions that are both technically robust and 
+                        practically applicable.
+                    </p>
+                </div>
+                
+                <div class="ai-card p-8">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-bullseye text-data-cyan mr-3"></i>
+                        Our Mission
+                    </h3>
+                    <p class="text-lg text-gray-300 mb-6">
+                        To democratize AI/ML technology by building accessible, efficient, and ethical 
+                        solutions that address real-world challenges across various domains including 
+                        agriculture, healthcare, business optimization, and human-computer interaction.
+                    </p>
+                    <div class="mt-6 p-4 bg-ai-blue/10 rounded-lg border border-ai-blue/20">
+                        <p class="text-ai-blue font-mono text-sm">
+                            "Transforming complex problems into efficient, technology-driven outcomes"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Team Section -->
+<section id="team" class="py-20 px-6 md:px-12">
+    <div class="container mx-auto max-w-6xl">
+        <div class="flex items-center justify-center gap-4 mb-16">
+            <div class="w-12 h-1 bg-ml-purple"></div>
+            <h2 class="text-3xl md:text-4xl font-bold text-center">
+                The <span class="text-ml-purple">Five Elements</span>
+            </h2>
+            <div class="w-12 h-1 bg-ml-purple"></div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Team Member 1 -->
+            <div class="ai-card p-6 team-member-card">
+                <div class="flex items-center mb-4">
+                    <div class="ai-animation w-16 h-16 rounded-full flex items-center justify-center mr-4 overflow-hidden">
+                        <img src="profile-aasthapng.png" 
+                             alt="Aastha Bhatt" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Aastha Bhatt</h3>
+                        <p class="text-data-cyan">Presenter & Frontend Designer</p>
+                    </div>
+                </div>
+                <p class="text-gray-300 mb-4">
+                    Creates intuitive user interfaces and compelling presentations that make complex AI concepts accessible.
+                </p>
+                <div class="flex justify-between items-center">
+                    <a href="mailto:aaastha.bhatt@gmail.com" class="text-ai-blue hover:text-ai-blue/80 text-sm">
+                        aaastha.bhatt@gmail.com
+                    </a>
+                    <a href="#" class="text-ml-purple hover:text-ml-purple/80" aria-label="LinkedIn Profile">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Team Member 2 -->
+            <div class="ai-card p-6 team-member-card">
+                <div class="flex items-center mb-4">
+                    <div class="ai-animation w-16 h-16 rounded-full flex items-center justify-center mr-4 overflow-hidden">
+                        <img src="profile-jayppng.png" 
+                             alt="Jay Patel" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Jay Patel</h3>
+                        <p class="text-data-cyan">Planner & Presenter</p>
+                    </div>
+                </div>
+                <p class="text-gray-300 mb-4">
+                    Strategic planner who ensures projects align with objectives and effectively communicates technical value.
+                </p>
+                <div class="flex justify-between items-center">
+                    <a href="mailto:patjay9794@gmail.com" class="text-ai-blue hover:text-ai-blue/80 text-sm">
+                        patjay9794@gmail.com
+                    </a>
+                    <a href="#" class="text-ml-purple hover:text-ml-purple/80" aria-label="LinkedIn Profile">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Team Member 3 -->
+            <div class="ai-card p-6 team-member-card">
+                <div class="flex items-center mb-4">
+                    <div class="ai-animation w-16 h-16 rounded-full flex items-center justify-center mr-4 overflow-hidden">
+                        <img src="profile-yashpng.png" 
+                             alt="Yash Panchal" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Yash Panchal</h3>
+                        <p class="text-data-cyan">Backend Developer & Implementer</p>
+                    </div>
+                </div>
+                <p class="text-gray-300 mb-4">
+                    Builds robust backend systems and implements machine learning models into production environments.
+                </p>
+                <div class="flex justify-between items-center">
+                    <a href="mailto:panchalyash1235@gmail.com" class="text-ai-blue hover:text-ai-blue/80 text-sm">
+                        panchalyash1235@gmail.com
+                    </a>
+                    <a href="#" class="text-ml-purple hover:text-ml-purple/80" aria-label="LinkedIn Profile">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Team Member 4 -->
+            <div class="ai-card p-6 team-member-card">
+                <div class="flex items-center mb-4">
+                    <div class="ai-animation w-16 h-16 rounded-full flex items-center justify-center mr-4 overflow-hidden">
+                        <img src="profile-jayd.png" 
+                             alt="Jay Daiya" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Jay Daiya</h3>
+                        <p class="text-data-cyan">Cybersecurity & .NET Specialist</p>
+                    </div>
+                </div>
+                <p class="text-gray-300 mb-4">
+                    Ensures AI systems are secure and develops enterprise-grade applications using .NET framework.
+                </p>
+                <div class="flex justify-between items-center">
+                    <a href="mailto:jaydaiya1512@gmail.com" class="text-ai-blue hover:text-ai-blue/80 text-sm">
+                        jaydaiya1512@gmail.com
+                    </a>
+                    <a href="https://www.linkedin.com/in/jdaiyacs" target="_blank" class="text-ml-purple hover:text-ml-purple/80" aria-label="LinkedIn Profile">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Team Member 5 -->
+            <div class="ai-card p-6 team-member-card">
+                <div class="flex items-center mb-4">
+                    <div class="ai-animation w-16 h-16 rounded-full flex items-center justify-center mr-4 overflow-hidden">
+                        <img src="profile-hits.png" 
+                             alt="Hitesh Prajapati" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Hitesh Prajapati</h3>
+                        <p class="text-data-cyan">Full Stack Developer</p>
+                    </div>
+                </div>
+                <p class="text-gray-300 mb-4">
+                    Bridges frontend and backend development, creating seamless full-stack AI applications.
+                </p>
+                <div class="flex justify-between items-center">
+                    <a href="mailto:hiteshprajapati4011@gmail.com" class="text-ai-blue hover:text-ai-blue/80 text-sm">
+                        hiteshprajapati4011@gmail.com
+                    </a>
+                    <a href="#" class="text-ml-purple hover:text-ml-purple/80" aria-label="LinkedIn Profile">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Team Synergy Card -->
+            <div class="ai-card p-6 team-member-card md:col-span-2 lg:col-span-3">
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-4 text-ml-purple">Team Synergy</h3>
+                    <p class="text-gray-300 mb-6">
+                        Our strength lies in our collaborative approach. Each member brings unique expertise, 
+                        creating a synergistic effect where the whole is greater than the sum of its parts.
+                    </p>
+                    <div class="flex justify-center space-x-4">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-ai-blue">5</div>
+                            <div class="text-sm text-gray-400">Specialized Members</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-ml-purple">15+</div>
+                            <div class="text-sm text-gray-400">Combined Skills</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-data-cyan">3</div>
+                            <div class="text-sm text-gray-400">Active Projects</div>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <a href="#contact" class="ai-button px-6 py-3 inline-block">
+                            <i class="fas fa-handshake mr-2"></i>Collaborate With Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6 md:px-12 bg-team-dark/90 backdrop-blur-sm">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex items-center justify-center gap-4 mb-16">
+                <div class="w-12 h-1 bg-ai-blue"></div>
+                <h2 class="text-3xl md:text-4xl font-bold text-center">
+                    Our <span class="text-ai-blue">Projects</span>
+                </h2>
+                <div class="w-12 h-1 bg-ai-blue"></div>
+            </div>
+            
+            <div class="space-y-12">
+                <!-- Project 1 -->
+                <div class="ai-card p-8">
+                    <div class="flex flex-col lg:flex-row items-center gap-8">
+                        <div class="lg:w-1/3">
+                            <div class="ai-animation h-48 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-warehouse text-white text-5xl"></i>
+                            </div>
+                        </div>
+                        <div class="lg:w-2/3">
+                            <h3 class="text-2xl font-bold mb-4">Demand-Based Inventory Management System</h3>
+                            <p class="text-gray-300 mb-6">
+                                An intelligent inventory optimization system using XGBoost machine learning models 
+                                to forecast product demand. Analyzes historical sales data to predict future demand, 
+                                enabling businesses to maintain optimal stock levels, reduce storage costs, and prevent 
+                                overstocking or stockouts.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="text-xs text-ai-blue border border-ai-blue/30 px-3 py-1 rounded-full">XGBoost</span>
+                                <span class="text-xs text-ml-purple border border-ml-purple/30 px-3 py-1 rounded-full">Time Series</span>
+                                <span class="text-xs text-data-cyan border border-data-cyan/30 px-3 py-1 rounded-full">Data Analysis</span>
+                                <span class="text-xs text-neural-green border border-neural-green/30 px-3 py-1 rounded-full">Python</span>
+                            </div>
+                            <a href="#" class="ai-button px-6 py-2 inline-block">
+                                <i class="fas fa-external-link-alt mr-2"></i>View Project Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="ai-card p-8">
+                    <div class="flex flex-col lg:flex-row items-center gap-8">
+                        <div class="lg:w-1/3 order-2 lg:order-1">
+                            <div class="lg:w-2/3">
+                                <h3 class="text-2xl font-bold mb-4">AI Virtual Mouse Using Hand Gesture</h3>
+                                <p class="text-gray-300 mb-6">
+                                    A contactless human-computer interaction system that replaces traditional 
+                                    mouse devices with hand gestures. Utilizes computer vision and machine 
+                                    learning algorithms to detect and interpret hand movements through a webcam, 
+                                    enabling cursor control and click actions through intuitive gestures.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="text-xs text-ai-blue border border-ai-blue/30 px-3 py-1 rounded-full">OpenCV</span>
+                                    <span class="text-xs text-ml-purple border border-ml-purple/30 px-3 py-1 rounded-full">MediaPipe</span>
+                                    <span class="text-xs text-data-cyan border border-data-cyan/30 px-3 py-1 rounded-full">Computer Vision</span>
+                                    <span class="text-xs text-neural-green border border-neural-green/30 px-3 py-1 rounded-full">Python</span>
+                                </div>
+                                <a href="#" class="ai-button px-6 py-2 inline-block">
+                                    <i class="fas fa-external-link-alt mr-2"></i>View Project Details
+                                </a>
+                            </div>
+                        </div>
+                        <div class="lg:w-1/3 order-1 lg:order-2">
+                            <div class="ai-animation h-48 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-hand-pointer text-white text-5xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="ai-card p-8">
+                    <div class="flex flex-col lg:flex-row items-center gap-8">
+                        <div class="lg:w-1/3">
+                            <div class="ai-animation h-48 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-seedling text-white text-5xl"></i>
+                            </div>
+                        </div>
+                        <div class="lg:w-2/3">
+                            <h3 class="text-2xl font-bold mb-4">Smart Crop AI: Personalized Crop Recommendation System</h3>
+                            <p class="text-gray-300 mb-6">
+                                An agricultural decision support system that recommends optimal crops based on 
+                                soil parameters (moisture, pH, nutrient content) and environmental factors. 
+                                Integrates multiple datasets including soil characteristics, weather APIs, and 
+                                historical agricultural trends to help farmers make data-driven decisions for 
+                                enhanced yield and sustainable practices.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="text-xs text-ai-blue border border-ai-blue/30 px-3 py-1 rounded-full">ML Models</span>
+                                <span class="text-xs text-ml-purple border border-ml-purple/30 px-3 py-1 rounded-full">Weather APIs</span>
+                                <span class="text-xs text-data-cyan border border-data-cyan/30 px-3 py-1 rounded-full">Soil Analysis</span>
+                                <span class="text-xs text-neural-green border border-neural-green/30 px-3 py-1 rounded-full">Agriculture</span>
+                            </div>
+                            <a href="#" class="ai-button px-6 py-2 inline-block">
+                                <i class="fas fa-external-link-alt mr-2"></i>View Project Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills/Expertise Section -->
+    <section id="skills" class="py-20 px-6 md:px-12">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex items-center justify-center gap-4 mb-16">
+                <div class="w-12 h-1 bg-ml-purple"></div>
+                <h2 class="text-3xl md:text-4xl font-bold text-center">
+                    Team <span class="text-ml-purple">Expertise</span>
+                </h2>
+                <div class="w-12 h-1 bg-ml-purple"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="ai-card p-6 text-center">
+                    <div class="ai-animation w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-brain text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Machine Learning</h3>
+                    <ul class="text-gray-300 space-y-1 text-sm">
+                        <li>Supervised Learning</li>
+                        <li>Neural Networks</li>
+                        <li>XGBoost</li>
+                        <li>Time Series Analysis</li>
+                    </ul>
+                </div>
+                
+                <div class="ai-card p-6 text-center">
+                    <div class="ai-animation w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-eye text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Computer Vision</h3>
+                    <ul class="text-gray-300 space-y-1 text-sm">
+                        <li>OpenCV</li>
+                        <li>MediaPipe</li>
+                        <li>Gesture Recognition</li>
+                        <li>Object Detection</li>
+                    </ul>
+                </div>
+                
+                <div class="ai-card p-6 text-center">
+                    <div class="ai-animation w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-code text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Development</h3>
+                    <ul class="text-gray-300 space-y-1 text-sm">
+                        <li>Full Stack Development</li>
+                        <li>.NET Framework</li>
+                        <li>Python/JavaScript</li>
+                        <li>API Integration</li>
+                    </ul>
+                </div>
+                
+                <div class="ai-card p-6 text-center">
+                    <div class="ai-animation w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Security & Deployment</h3>
+                    <ul class="text-gray-300 space-y-1 text-sm">
+                        <li>Cybersecurity</li>
+                        <li>Secure AI Systems</li>
+                        <li>Model Deployment</li>
+                        <li>Production ML</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 md:px-12 bg-team-dark/90 backdrop-blur-sm">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex items-center justify-center gap-4 mb-16">
+                <div class="w-12 h-1 bg-ai-blue"></div>
+                <h2 class="text-3xl md:text-4xl font-bold text-center">
+                    Collaborate <span class="text-ai-blue">With Us</span>
+                </h2>
+                <div class="w-12 h-1 bg-ai-blue"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <div class="ai-card p-8 h-full">
+                        <h3 class="text-2xl font-bold mb-6">
+                            Contact Information
+                        </h3>
+                        
+                        <div class="space-y-6 mb-8">
+                            <div class="flex items-start">
+                                <div class="ai-animation w-12 h-12 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-bold text-white">Business Inquiries</h4>
+                                    <p>panchtatvv.ai@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="ai-animation w-12 h-12 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-users text-white"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-bold text-white">Team Size</h4>
+                                    <p>5 AI/ML Specialists</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="ai-animation w-12 h-12 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-lightbulb text-white"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-bold text-white">Specialization</h4>
+                                    <p>Practical AI/ML Solutions</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold text-white mb-4">Project Domains</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-ai-blue/20 text-ai-blue rounded-full text-sm">Agriculture</span>
+                                <span class="px-3 py-1 bg-ml-purple/20 text-ml-purple rounded-full text-sm">Business</span>
+                                <span class="px-3 py-1 bg-data-cyan/20 text-data-cyan rounded-full text-sm">HCI</span>
+                                <span class="px-3 py-1 bg-neural-green/20 text-neural-green rounded-full text-sm">Inventory</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ai-card p-8">
+                    <h3 class="text-2xl font-bold mb-6">
+                        Send a Message
+                    </h3>
+                    
+                    <!-- Contact Form -->
+                    <form id="contact-form" action="https://formspree.io/f/xkgbrzqo" method="POST">
+                        <div class="grid grid-cols-1 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-gray-300 mb-2">Name/Organization</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-team-dark rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-ai-blue" placeholder="Your Name or Company" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-300 mb-2">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-team-dark rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-ai-blue" placeholder="contact@organization.com" required>
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-gray-300 mb-2">Project Type</label>
+                                <select id="subject" name="subject" class="w-full px-4 py-3 bg-team-dark rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-ai-blue" required>
+                                    <option value="" disabled selected>Select project type</option>
+                                    <option value="ai-ml-development">AI/ML Development</option>
+                                    <option value="consultation">AI Consultation</option>
+                                    <option value="collaboration">Research Collaboration</option>
+                                    <option value="other">Other Inquiry</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-gray-300 mb-2">Project Details</label>
+                                <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 bg-team-dark rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-ai-blue" placeholder="Tell us about your project or inquiry..." required></textarea>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="w-full ai-button py-4 rounded-lg font-bold">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Send Message
+                        </button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-message" class="hidden mt-6 p-4 bg-ai-blue/10 text-ai-blue rounded-lg">
+                        Thank you for your message! Our team will get back to you soon.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-gray-800">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div class="flex items-center mb-6 md:mb-0">
+                    <a href="#" class="text-2xl font-bold font-mono">
+                        <span class="text-ai-blue">panch</span>
+                        <span class="text-ml-purple">_</span>
+                        <span class="text-data-cyan">tatvv</span>
+                    </a>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <a href="#" class="ai-animation w-12 h-12 rounded-full flex items-center justify-center hover:bg-ai-blue/10 transition">
+                        <i class="fab fa-github text-white text-xl"></i>
+                    </a>
+                    <a href="#" class="ai-animation w-12 h-12 rounded-full flex items-center justify-center hover:bg-ml-purple/10 transition">
+                        <i class="fab fa-linkedin-in text-white text-xl"></i>
+                    </a>
+                    <a href="#" class="ai-animation w-12 h-12 rounded-full flex items-center justify-center hover:bg-data-cyan/10 transition">
+                        <i class="fab fa-twitter text-white text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+                <p>© 2025 Panch Tatvv AI/ML Team. All rights reserved.</p>
+                <p class="text-sm mt-2">Transforming problems into AI-powered solutions</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle mobile menu
+        const menuToggle = document.getElementById('menu-toggle');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close menu when clicking on links
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+        });
+        
+        // Close menu on outside click
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Form submission handling
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const successMessage = document.getElementById('success-message');
+
+            fetch(form.action, {
+                method: form.method,
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    successMessage.classList.remove('hidden');
+                    form.reset();
+                    setTimeout(() => {
+                        successMessage.classList.add('hidden');
+                    }, 5000);
+                } else {
+                    successMessage.textContent = 'Oops! Something went wrong. Please try again.';
+                    successMessage.classList.remove('hidden');
+                }
+            }).catch(() => {
+                successMessage.textContent = 'Oops! Something went wrong. Please try again.';
+                successMessage.classList.remove('hidden');
+            });
+        });
+        
+        // Animate elements when in viewport
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe team member cards
+            document.querySelectorAll('.team-member-card').forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Observe project cards
+            document.querySelectorAll('.ai-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
